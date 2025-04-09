@@ -137,6 +137,7 @@ The application supports both US and international contacts:
 - Check that your API key doesn't have any restrictions that would prevent it from being used in your development environment
 - Verify that your Airtable Personal Access Token has the correct permissions
 
+
 ### CORS Issues
 
 - The application uses a proxy in the Vite configuration to avoid CORS issues with the Google Places API
