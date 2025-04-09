@@ -150,6 +150,12 @@ The application supports both US and international contacts:
 - Check that your Personal Access Token has access to the specified base
 - Verify that the Contact Type field is set up as a Multiple Select field type
 
+### Deployment
+
+- Using Netlity https://app.netlify.com/teams/spaceisnice/sites through Github 
+- Continuous deployment when changes pushed to main https://docs.netlify.com/site-deploys/create-deploys/#deploy-with-git
+- todo get all apps up on this platform
+
 ## License
 
 MIT
