@@ -36,7 +36,7 @@ export const searchVenueWithPlaces = async (
       {
         headers: {
           'X-Goog-Api-Key': API_KEY,
-          'X-Goog-FieldMask': 'places.id,places.displayName.text,places.formattedAddress,places.websiteUri',
+          'X-Goog-FieldMask': 'places.id,places.displayName.text,places.formattedAddress,places.websiteUri,places.addressComponents',
           'Content-Type': 'application/json'
         },
         timeout: 10000 // 10 second timeout
@@ -50,10 +50,12 @@ export const searchVenueWithPlaces = async (
     }
 
     console.log('Places API response received:', {
-      status: response.status,
+      status: response.status,      
       hasData: !!response.data,
       placesCount: response.data.places?.length || 0
     });
+
+    console.log('Address Component', {address_component: response.data.places[0].addressComponents } )
 
     if (!response.data.places || response.data.places.length === 0) {
       console.log('No places found in API response');
@@ -84,10 +86,15 @@ export const searchVenueWithPlaces = async (
       }
       
       // City is usually the first part that's not a street address
-      for (const part of addressParts) {
-        if (!part.match(/^\d/)) { // If part doesn't start with a number
-          extractedCity = part;
-          break;
+      // add check for UK and United Kingdom because address formatting is different then // stopgap for now
+      if ((country != "UK" ) && (country != "United Kingdom") ){
+        for (const part of addressParts) {
+          if (!part.match(/^\d/)) { // If part doesn't start with a number
+
+              extractedCity = part;
+    
+            break;
+          }
         }
       }
     }
