@@ -20,7 +20,7 @@ function App() {
         <div className="bg-white shadow-md rounded-lg p-6">
           <h2 className="text-xl font-semibold mb-4">Contact Information</h2>
           <p className="text-gray-600 mb-6">
-            Search for contact information using Google or enter details manually. All information will be saved to your Airtable database with the note "*robot generated*".
+            Search for contact information using Google or enter details manually.
           </p>
           
           <VenueForm />
