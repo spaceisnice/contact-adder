@@ -203,9 +203,11 @@ const VenueForm: React.FC = () => {
     if (region === 'INTL - Europe') {
       setStateOptions(europeanCountries);
       setCountry('EU');
+     } else if (region === 'INTL - UK') {
+      setCountry('UK');
     } else {
       setStateOptions(usStateOptions);
-      setCountry('');
+      // setCountry('');
     }
     // Clear the selected state when region changes
     setState('');
@@ -265,8 +267,7 @@ const VenueForm: React.FC = () => {
     setSearchAttempted(true);
 
     try {
-      console.log('Starting venue search for:', venueName, 'in', city, state, country);
-      
+          
       // Search using Google Places API
       const venueInfo = await searchVenueWithPlaces(venueName, city, state, country);
       
@@ -277,7 +278,7 @@ const VenueForm: React.FC = () => {
         return;
       }
       
-      console.log('Venue information found:', venueInfo);
+      // console.log('Venue information found:', venueInfo);
       
       // Store search results
       setSearchResults(venueInfo);
@@ -289,6 +290,11 @@ const VenueForm: React.FC = () => {
       setPhoneNumber(venueInfo.phoneNumber || '');
       setWebsite(venueInfo.website || '');
       setCountry(venueInfo.country || '');
+      
+      //update region to INTL - UK if UK is chosen country
+      if (venueInfo.country === 'UK'){
+        setRegion('INTL - UK');
+      }
       
       if (venueInfo.bookingContact) {
         setContactName(venueInfo.bookingContact.name || '');
