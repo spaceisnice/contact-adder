@@ -44,7 +44,12 @@ const SearchResults: React.FC<SearchResultsProps> = ({
             </a>
           </div>
         )}
-        
+        {searchResults.socialMediaUrl && (
+          <div>
+            <span className="font-medium text-gray-700">Social Media URL:</span>{' '}
+            <span className="text-gray-600">{searchResults.socialMediaUrl}</span>
+          </div>
+        )}
         {searchResults.address && (
           <div>
             <span className="font-medium text-gray-700">Address:</span>{' '}

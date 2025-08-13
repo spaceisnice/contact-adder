@@ -3,6 +3,7 @@ export interface VenueInfo {
   address?: string;
   phoneNumber?: string;
   website?: string;
+  socialMediaUrl?: string;
   bookingContact?: {
     name?: string;
     email?: string;

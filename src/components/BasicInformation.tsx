@@ -11,6 +11,7 @@ interface BasicInformationProps {
   address: string;
   phoneNumber: string;
   website: string;
+  socialMediaUrl: string;
   selectedContactTypes: string[];
   contactTypeOptions: string[];
   isLoadingContactTypes: boolean;
@@ -27,6 +28,7 @@ interface BasicInformationProps {
   onAddressChange: (value: string) => void;
   onPhoneNumberChange: (value: string) => void;
   onWebsiteChange: (value: string) => void;
+  onSocialMediaUrlChange: (value: string) => void;
   onContactTypeSearchChange: (value: string) => void;
   onContactTypeToggle: (type: string) => void;
   onContactTypeRemove: (type: string) => void;
@@ -42,6 +44,7 @@ const BasicInformation: React.FC<BasicInformationProps> = ({
   address,
   phoneNumber,
   website,
+  socialMediaUrl,
   selectedContactTypes,
   contactTypeOptions,
   isLoadingContactTypes,
@@ -58,6 +61,7 @@ const BasicInformation: React.FC<BasicInformationProps> = ({
   onAddressChange,
   onPhoneNumberChange,
   onWebsiteChange,
+  onSocialMediaUrlChange,
   onContactTypeSearchChange,
   onContactTypeToggle,
   onContactTypeRemove,
@@ -214,6 +218,19 @@ const BasicInformation: React.FC<BasicInformationProps> = ({
             placeholder="Enter website URL"
           />
         </div>
+        <div>
+          <label htmlFor="socialMediaUrl" className="block text-sm font-medium text-gray-700 mb-1">
+            social Media URL
+          </label>
+          <input
+            id="socialMediaUrl"
+            type="text"
+            value={socialMediaUrl}
+            onChange={(e) => onSocialMediaUrlChange(e.target.value)}
+            className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+            placeholder="Enter social media URL"
+          />
+        </div>        
       </div>
     </div>
   );

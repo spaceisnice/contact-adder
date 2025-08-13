@@ -9,6 +9,7 @@ export const createVenueInfo = (
   address?: string,
   phoneNumber?: string,
   website?: string,
+  socialMediaUrl?: string,
   contactName?: string,
   contactEmail?: string,
   contactPhone?: string,
@@ -20,6 +21,7 @@ export const createVenueInfo = (
     address,
     phoneNumber,
     website,
+    socialMediaUrl,
     bookingContact: {
       name: contactName,
       email: contactEmail,

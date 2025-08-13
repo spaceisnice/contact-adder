@@ -164,6 +164,7 @@ const VenueForm: React.FC = () => {
   const [address, setAddress] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [website, setWebsite] = useState('');
+  const [socialMediaUrl, setSocialMediaUrl] = useState('');
   
   // Contact information
   const [contactName, setContactName] = useState('');
@@ -176,7 +177,7 @@ const VenueForm: React.FC = () => {
   const [isLoadingContactTypes, setIsLoadingContactTypes] = useState(false);
   const [contactTypeSearch, setContactTypeSearch] = useState('');
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const [notes, setNotes] = useState<string[]>([]);
+  const [notes, setNotes] = useState('');
   
   // State options based on region
   const [stateOptions, setStateOptions] = useState<string[] | { name: string, abbr: string }[]>(usStateOptions);
@@ -206,11 +207,11 @@ const VenueForm: React.FC = () => {
      } else if (region === 'INTL - UK') {
       setCountry('UK');
     } else {
-      setStateOptions(usStateOptions);
+     setStateOptions(usStateOptions);
       // setCountry('');
     }
-    // Clear the selected state when region changes
-    setState('');
+    // Clear the selected state when region changes <- why would you do that???
+    //setState('');
   }, [region]);
 
   // Fetch contact types on component mount
@@ -289,6 +290,7 @@ const VenueForm: React.FC = () => {
       setAddress(venueInfo.address || '');
       setPhoneNumber(venueInfo.phoneNumber || '');
       setWebsite(venueInfo.website || '');
+      setSocialMediaUrl(venueInfo.socialMediaUrl || '');
       setCountry(venueInfo.country || '');
       
       //update region to INTL - UK if UK is chosen country
@@ -352,6 +354,7 @@ const VenueForm: React.FC = () => {
       address,
       phoneNumber,
       website,
+      socialMediaUrl,
       contactName,
       contactEmail,
       phoneNumber,
@@ -398,10 +401,11 @@ const VenueForm: React.FC = () => {
     setAddress('');
     setPhoneNumber('');
     setWebsite('');
+    setSocialMediaUrl('');
     setContactName('');
     setContactEmail('');
     setSelectedContactTypes([]);
-    setNotes([]);
+    setNotes('');
     setSearchResults(null);
     setSearchSource(null);
     setSearchAttempted(false);
@@ -579,6 +583,12 @@ const VenueForm: React.FC = () => {
                   <a href={searchResults.website} target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline break-all">
                     {searchResults.website.replace(/^https?:\/\//, '')}
                   </a>
+                </div>
+              )}
+                {searchResults.socialMediaUrl && (
+                <div>
+                  <span className="font-medium text-gray-700">Social Media URL:</span>{' '}
+                 <span className="text-gray-600">{searchResults.socialMediaUrl}</span>
                 </div>
               )}
               
@@ -849,6 +859,19 @@ const VenueForm: React.FC = () => {
                 onChange={(e) => setWebsite(e.target.value)}
                 className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                 placeholder="Enter website URL"
+              />
+            </div>            
+            <div>
+              <label htmlFor="socialMediaUrl" className="block text-sm font-medium text-gray-700 mb-1">
+                Social Media URL
+              </label>
+              <input
+                id="socialMediaUrl"
+                type="text"
+                value={socialMediaUrl}
+                onChange={(e) => setSocialMediaUrl(e.target.value)}
+                className="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                placeholder="Enter Social Media URL"
               />
             </div>
           </div>

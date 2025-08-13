@@ -110,6 +110,7 @@ export const addVenueToAirtable = async (venueInfo: VenueInfo): Promise<string> 
       "Address": venueInfo.address || '',
       "Phone": venueInfo.phoneNumber || '',
       "Website": venueInfo.website || '',
+      "Social Media URL": venueInfo.socialMediaUrl || '',
       "Contact": venueInfo.bookingContact?.name || '',
       "Email": venueInfo.bookingContact?.email || '',
       "City": venueInfo.city,

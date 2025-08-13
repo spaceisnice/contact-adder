@@ -12,6 +12,7 @@ export interface FormData {
   address: string;
   phoneNumber: string;
   website: string;
+  socialMediaUrl: string;
   contactName: string;
   contactEmail: string;
   selectedContactTypes: string[];

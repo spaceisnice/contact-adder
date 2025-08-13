@@ -86,6 +86,10 @@ const PreviewModal: React.FC<PreviewModalProps> = ({ data, onConfirm, onCancel }
                   </dd>
                 </div>
                 <div>
+                  <dt className="text-sm font-medium text-gray-500">Social Media URL</dt>
+                  <dd className="text-sm text-gray-900">{data.socialMediaUrl || 'Not provided'}</dd> 
+                </div>                
+                <div>
                   <dt className="text-sm font-medium text-gray-500">Contact Name</dt>
                   <dd className="text-sm text-gray-900">{data.bookingContact?.name || 'Not provided'}</dd>
                 </div>
