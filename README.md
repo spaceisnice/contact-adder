@@ -115,6 +115,13 @@ VITE_GOOGLE_SEARCH_ENGINE_ID=your_google_search_engine_id
 6. Click "Preview & Save" to review the information
 7. Confirm the information in the preview modal to save to Airtable
 
+## Search Database first
+- User enters a contact name in the "Search Database" field
+- Clicks "Search" or presses Enter
+- The system queries Airtable using a case-insensitive exact match filter
+- Results are displayed in a modal with organized sections for location, contact info, and additional details
+- If no matches are found, shows "No matches found in Airtable"
+
 ## Required Fields
 
 The following fields are required before saving:

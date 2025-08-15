@@ -162,6 +162,59 @@ export const verifyAirtableConnection = async (): Promise<boolean> => {
   }
 };
 
+// Function to search for existing contacts by name
+export const searchContactsByName = async (contactName: string): Promise<any[]> => {
+  try {
+    // Validate configuration before attempting to search
+    if (!personalAccessToken || !baseId || !tableName) {
+      throw new Error('Missing required Airtable configuration. Please check your .env file.');
+    }
+
+    // Verify connection before proceeding
+    const isConnected = await verifyAirtableConnection();
+    if (!isConnected) {
+      throw new Error('Failed to connect to Airtable. Please check your configuration and network connection.');
+    }
+
+    // Search for records with matching contact name (case-insensitive)
+    const records = await base(tableName).select({
+      filterByFormula: `LOWER({Name or Company}) = LOWER("${contactName.replace(/"/g, '""')}")`,
+      maxRecords: 10 // Limit results
+    }).all();
+
+    // Convert records to a more usable format
+    return records.map(record => ({
+      id: record.getId(),
+      name: record.get('Name or Company'),
+      address: record.get('Address'),
+      phone: record.get('Phone'),
+      website: record.get('Website'),
+      socialMediaUrl: record.get('Social Media URL'),
+      contact: record.get('Contact'),
+      email: record.get('Email'),
+      city: record.get('City'),
+      state: record.get('State'),
+      region: record.get('Region'),
+      contactType: record.get('Contact Type'),
+      notes: record.get('Notes')
+    }));
+  } catch (error: any) {
+    console.error('Error searching contacts in Airtable:', error);
+    
+    if (error.statusCode === 401) {
+      throw new Error('Invalid Airtable Personal Access Token. Please check your configuration.');
+    } else if (error.statusCode === 403) {
+      throw new Error('Not authorized to access this Airtable base. Please check your permissions.');
+    } else if (error.statusCode === 404) {
+      throw new Error('Airtable base or table not found. Please verify your Base ID and Table Name.');
+    } else if (!personalAccessToken || !baseId || !tableName) {
+      throw new Error('Missing required Airtable configuration. Please check your .env file.');
+    } else {
+      throw new Error(`Failed to search contacts: ${error.message || 'Unknown error'}`);
+    }
+  }
+};
+
 // Function to fetch available Contact Types from Airtable
 export const fetchContactTypes = async (): Promise<string[]> => {
   try {
