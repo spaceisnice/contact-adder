@@ -163,6 +163,11 @@ The application supports both US and international contacts:
 - Continuous deployment when changes pushed to main https://docs.netlify.com/site-deploys/create-deploys/#deploy-with-git
 - todo get all apps up on this platform
 
+- note on feature- branches, any branch that starts with 'feature' Netlify will automatically deploy to it's own URL with the feature name prefixed in the url, like so
+   for the branch named 'feature-search-first' you can view that branch here:
+   https://feature-search-first--contact-adder.netlify.app/
+   
+
 ## License
 
 MIT
