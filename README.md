@@ -167,6 +167,8 @@ The application supports both US and international contacts:
    for the branch named 'feature-search-first' you can view that branch here:
    https://feature-search-first--contact-adder.netlify.app/
    
+## Todo
+- Improve search While not true fuzzy search, Airtable formulas can be used to achieve some level of approximate matching. For example, using the FIND() function within a filterByFormula parameter in your API request can check if a specific substring exists within a field, allowing for partial matches. This is not fuzzy search but can be useful for certain scenarios.
 
 ## License
 

@@ -209,7 +209,6 @@ const VenueForm: React.FC = () => {
       setCountry('UK');
     } else {
      setStateOptions(usStateOptions);
-      // setCountry('');
     }
     // Clear the selected state when region changes <- why would you do that???
     //setState('');
@@ -286,7 +285,7 @@ const VenueForm: React.FC = () => {
       setSearchResults(venueInfo);
       
       // Update form fields with search results
-      setCity(venueInfo.city || city);
+      setCity(venueInfo.city || '');
       setState(venueInfo.state || '');
       setAddress(venueInfo.address || '');
       setPhoneNumber(venueInfo.phoneNumber || '');
@@ -295,8 +294,9 @@ const VenueForm: React.FC = () => {
       setCountry(venueInfo.country || '');
       
       //update region to INTL - UK if UK is chosen country
-      if (venueInfo.country === 'UK'){
+      if (venueInfo.country === 'UK' || 'United Kingdom'){
         setRegion('INTL - UK');
+        
       }
       
       if (venueInfo.bookingContact) {
