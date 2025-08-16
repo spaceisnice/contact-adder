@@ -87,7 +87,8 @@ export const searchVenueWithPlaces = async (
       
       // City is usually the first part that's not a street address
       // add check for UK and United Kingdom because address formatting is different then // stopgap for now
-      if ((country != "UK" ) && (country != "United Kingdom") ){
+      
+      if ((country != "UK") && (country != "United Kingdom")){
         for (const part of addressParts) {
           if (!part.match(/^\d/)) { // If part doesn't start with a number
 
@@ -96,6 +97,9 @@ export const searchVenueWithPlaces = async (
             break;
           }
         }
+      } else {
+        // if were in UK don't bother with state 'airtableService puts in country if no state'
+        extractedState = "";
       }
     }
 

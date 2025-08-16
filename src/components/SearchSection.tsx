@@ -33,9 +33,9 @@ const SearchSection: React.FC<SearchSectionProps> = ({
 }) => {
   return (
     <div className="bg-blue-50 p-4 rounded-md border border-blue-200">
-      <h3 className="text-lg font-medium text-blue-800 mb-4">Search for Contact</h3>
+      <h3 className="text-lg font-medium text-blue-800 mb-4">Search Google for Contact</h3>
       <p className="text-sm text-blue-600 mb-4">
-        Enter the contact name and location details to search for information automatically.
+        Enter the contact name and details to search the webs.
       </p>
       
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
@@ -122,7 +122,7 @@ const SearchSection: React.FC<SearchSectionProps> = ({
         ) : (
           <>
             <Search className="mr-2 h-5 w-5" />
-            Search for Contact Information
+            Search Google for Contact
           </>
         )}
       </button>

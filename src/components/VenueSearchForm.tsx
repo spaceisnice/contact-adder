@@ -5,6 +5,7 @@ import { addVenueToAirtable, verifyAirtableConnection, fetchContactTypes } from 
 import { searchVenueWithPlaces } from '../services/googlePlacesService';
 import { VenueInfo } from '../types/venue';
 import PreviewModal from './PreviewModal';
+import DatabaseSearchSection from './DatabaseSearchSection';
 import toast from 'react-hot-toast';
 
 // Region options
@@ -208,7 +209,6 @@ const VenueForm: React.FC = () => {
       setCountry('UK');
     } else {
      setStateOptions(usStateOptions);
-      // setCountry('');
     }
     // Clear the selected state when region changes <- why would you do that???
     //setState('');
@@ -285,7 +285,7 @@ const VenueForm: React.FC = () => {
       setSearchResults(venueInfo);
       
       // Update form fields with search results
-      setCity(venueInfo.city || city);
+      setCity(venueInfo.city || '');
       setState(venueInfo.state || '');
       setAddress(venueInfo.address || '');
       setPhoneNumber(venueInfo.phoneNumber || '');
@@ -294,8 +294,9 @@ const VenueForm: React.FC = () => {
       setCountry(venueInfo.country || '');
       
       //update region to INTL - UK if UK is chosen country
-      if (venueInfo.country === 'UK'){
+      if (venueInfo.country === 'UK' || 'United Kingdom'){
         setRegion('INTL - UK');
+        
       }
       
       if (venueInfo.bookingContact) {
@@ -434,6 +435,9 @@ const VenueForm: React.FC = () => {
 
   return (
     <div className="w-full max-w-3xl mx-auto">
+      {/* Database Search Section */}
+      <DatabaseSearchSection />
+      
       {connectionVerified === false && (
         <div className="mb-6 p-4 bg-yellow-50 border border-yellow-200 rounded-md">
           <div className="flex items-start">
@@ -457,9 +461,9 @@ const VenueForm: React.FC = () => {
       <form onSubmit={handleSubmit} className="space-y-6">
         {/* Search Section */}
         <div className="bg-blue-50 p-4 rounded-md border border-blue-200">
-          <h3 className="text-lg font-medium text-blue-800 mb-4">Search for Contact</h3>
+          <h3 className="text-lg font-medium text-blue-800 mb-4">Search Google for Contact</h3>
           <p className="text-sm text-blue-600 mb-4">
-            Enter the contact name and location details to search for information automatically.
+            Enter the contact name and location details to search the webs.
           </p>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
             <div>

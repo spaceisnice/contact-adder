@@ -115,6 +115,13 @@ VITE_GOOGLE_SEARCH_ENGINE_ID=your_google_search_engine_id
 6. Click "Preview & Save" to review the information
 7. Confirm the information in the preview modal to save to Airtable
 
+## Search Database first
+- User enters a contact name in the "Search Database" field
+- Clicks "Search" or presses Enter
+- The system queries Airtable using a case-insensitive exact match filter
+- Results are displayed in a modal with organized sections for location, contact info, and additional details
+- If no matches are found, shows "No matches found in Airtable"
+
 ## Required Fields
 
 The following fields are required before saving:
@@ -155,6 +162,13 @@ The application supports both US and international contacts:
 - Using Netlity https://app.netlify.com/teams/spaceisnice/sites through Github 
 - Continuous deployment when changes pushed to main https://docs.netlify.com/site-deploys/create-deploys/#deploy-with-git
 - todo get all apps up on this platform
+
+- note on feature- branches, any branch that starts with 'feature' Netlify will automatically deploy to it's own URL with the feature name prefixed in the url, like so
+   for the branch named 'feature-search-first' you can view that branch here:
+   https://feature-search-first--contact-adder.netlify.app/
+   
+## Todo
+- Improve search While not true fuzzy search, Airtable formulas can be used to achieve some level of approximate matching. For example, using the FIND() function within a filterByFormula parameter in your API request can check if a specific substring exists within a field, allowing for partial matches. This is not fuzzy search but can be useful for certain scenarios.
 
 ## License
 
