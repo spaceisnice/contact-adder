@@ -176,9 +176,10 @@ export const searchContactsByName = async (contactName: string): Promise<any[]> 
       throw new Error('Failed to connect to Airtable. Please check your configuration and network connection.');
     }
 
-    // Search for records with matching contact name (case-insensitive)
+    // Search for records with matching contact name, using FIND() to retrieve partial matches (case-insensitive)
     const records = await base(tableName).select({
-      filterByFormula: `LOWER({Name or Company}) = LOWER("${contactName.replace(/"/g, '""')}")`,
+      filterByFormula: `FIND("${contactName.replace(/"/g, '""')}",LOWER({Name or Company}))`,
+      // filterByFormula: `LOWER({Name or Company}) = LOWER("${contactName.replace(/"/g, '""')}")`,
       maxRecords: 10 // Limit results
     }).all();
 

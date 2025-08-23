@@ -109,7 +109,7 @@ const DatabaseSearchSection: React.FC = () => {
         </div>
         
         <p className="text-xs text-gray-500 mt-2">
-          This will search for <strong>exact</strong> matches in the "Name or Company" field in the World Domination database. Any records found will show in a popup. 
+          Search will retrieve partial, case-insensitive matches in "Name or Company" field of the World Domination database. Any records found will show in a popup. 
           <br /><strong>Note:</strong> It is still possible to add duplicate records, this just shows what's there.
         </p>
       </div>
